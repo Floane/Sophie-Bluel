@@ -241,3 +241,32 @@ footer nav ul {
 	display: none;
 	margin-bottom: 25px;
 }
+
+/*** Connected ***/
+.edition-banner {
+	background-color: black;
+	color: white;
+	padding: 20px;
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+
+.title {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+}
+
+.edit-btn {
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	display: none;
+}
