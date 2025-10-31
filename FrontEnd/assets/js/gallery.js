@@ -58,18 +58,19 @@ function createButtons(categories) {
     })
 }
 
-fetch("http://localhost:5678/api/works")
-    .then(response => response.json())
-    .then(works => {
+async function init() {
+    try {
+        const workRes = await fetch("http://localhost:5678/api/works");
+        const works = await workRes.json();
         allWorks = works;
         displayWorks(allWorks);
 
-        return fetch("http://localhost:5678/api/categories");
-    })
-    .then((response) => response.json())
-    .then((categories) => {
+        const categoriesRes = await fetch("http://localhost:5678/api/categories");
+        const categories = await categoriesRes.json();
         createButtons(categories);
-    })
-    .catch(error => {
-        console.log("Erreur lors de la récupération :", error);
-    })
+    } catch (error) {
+        console.log("Erreur lors de la récupération : ", error);
+    }
+}
+
+init();
