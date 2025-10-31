@@ -231,3 +231,13 @@ footer nav ul {
 	text-align: center;
 	color: black;
 }
+
+#login-error {
+	color: red;
+	font-weight: 600;
+	background-color: pink;
+	padding: 8px 10px;
+	text-align: center;
+	display: none;
+	margin-bottom: 25px;
+}
