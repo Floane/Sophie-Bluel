@@ -37,6 +37,7 @@ const title = document.getElementById("modal-title");
 const uploadTrigger = document.getElementById("upload-trigger");
 const uploadInput = document.getElementById("upload-input");
 const uploadPreview = document.getElementById("upload-preview");
+const modalGrid = document.getElementById("modal-grid");
 
 function showGallery(){
     title.textContent = "Galerie photo";
@@ -45,6 +46,32 @@ function showGallery(){
     viewForm.hidden = true;
     viewForm.setAttribute("aria-hidden", "true");
     btnBack.hidden = true;
+}
+
+function renderModalGrid() {
+    const grid = document.getElementById("modal-grid");
+    if (!grid || !Array.isArray(allWorks)) return;
+
+    grid.innerHTML = "";
+    allWorks.forEach((work) => {
+        const fig = document.createElement("figure");
+        fig.className = "modal_thumb";
+        fig.dataset.id = work.id;
+
+        const img = document.createElement("img");
+        img.src = work.imageUrl;
+        img.alt = work.title;
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "modal_trash";
+        delBtn.setAttribute("aria-label", "Supprimer");
+        delBtn.dataset.id = work.id;
+        delBtn.innerHTML = "<i class='bx bxs-trash'></i>";
+
+        fig.appendChild(img);
+        fig.appendChild(delBtn);
+        grid.appendChild(fig);
+    });
 }
 
 function showForm() {
@@ -59,6 +86,7 @@ function showForm() {
 editBtn.addEventListener ("click", () => {
     dlg.showModal();
     showGallery();
+    renderModalGrid();
 });
 
 btnOpenAdd.addEventListener ("click", () => {
@@ -79,3 +107,64 @@ dlg.addEventListener("click", (event) => {
     const clickInside = panel.contains(event.target);
     if (!clickInside) dlg.close();
 });
+
+
+modalGrid.addEventListener("click", onModalGridClick);
+
+function onModalGridClick(e) {
+    const delBtn = e.target.closest(".modal_trash");
+    if (!delBtn) return;
+    const id = parseInt(delBtn.dataset.id, 10);
+    if (!id) return;
+
+
+    deleteWork(id, delBtn);
+}
+
+async function deleteWork(workId, sourceBtn) {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+        alert("Vous devez être connecté pour supprimer un projet.");
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://localhost:5678/api/works/${workId}`, {
+            method: "DELETE",
+            headers: {
+                "accept": "*/*",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+
+        if (!res.ok) {
+            if (res.status === 401) {
+                alert("Session expirée ou non autorisée. Veuillez vous reconnecter.");
+            } else {
+                alert("La suppression a échoué. Réessayez.");
+            }
+            return;
+        }
+
+        allWorks = allWorks.filter(w => w.id !== workId);
+
+        const figModal = sourceBtn.closest("figure.modal_thumb");
+        if (figModal) figModal.remove();
+
+        const mainGallery = document.querySelector(".gallery");
+        if (mainGallery) {
+            const toRemove = mainGallery.querySelectorAll("figure");
+            toRemove.forEach(fig => {
+                const img = fig.querySelector("img");
+                const title = fig.querySelector("figcaption");
+                if (img && img.src && title && img.src.includes(String(workId))) {
+                    fig.remove();
+                }
+            });
+        }
+
+    } catch (err) {
+        console.error("Erreur suppression :", err);
+        alert("Erreur réseau lors de la suppression.");
+    }
+}

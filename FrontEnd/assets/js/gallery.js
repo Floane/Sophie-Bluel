@@ -12,6 +12,7 @@ function displayWorks(list) {
         const figure = document.createElement("figure");
         const image = document.createElement("img");
         const figcaption = document.createElement("figcaption");
+        figure.dataset.id = work.id;
 
         image.src = work.imageUrl;
         image.alt = work.title;
