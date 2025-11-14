@@ -59,15 +59,21 @@ function createButtons(categories) {
 }
 
 async function init() {
+    const worksPromise = fetch("http://localhost:5678/api/works").then(r => r.json());
+    const categoriesPromise = fetch("http://localhost:5678/api/categories").then(r => r.json());
+
     try {
-        const workRes = await fetch("http://localhost:5678/api/works");
-        const works = await workRes.json();
+        const works = await worksPromise;
         allWorks = works;
         displayWorks(allWorks);
+    } catch (error) {
+        console.log("Erreur lors de la récupération des travaux :", error);
+    }
 
-        const categoriesRes = await fetch("http://localhost:5678/api/categories");
-        const categories = await categoriesRes.json();
+    try {
+        const categories = await categoriesPromise;
         createButtons(categories);
+        
     } catch (error) {
         console.log("Erreur lors de la récupération : ", error);
     }
