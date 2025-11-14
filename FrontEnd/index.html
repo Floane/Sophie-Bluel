@@ -7,7 +7,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+	<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 
@@ -50,13 +50,58 @@
 				modifier
 			</div>
 		</div>
-		
-		<nav class="filters" id="filters">
-			<!-- Ajout des boutons via JS -->
-		</nav>
-		<div class="gallery">
-			<!-- Ajout dynamique des travaux via JS -->
-		</div>
+
+		<dialog id="works-modal" aria-labelledby="modal-title">
+			<div class="modal_panel" role="document">
+				<header class="modal_header">
+					<div id="modal-buttons">
+						<button class="modal_back" id="modal-back" aria-label="Retour" hidden><i class='bx  bx-arrow-left-stroke'    ></i></button>
+						<button class="modal_close" id="modal-close" aria-label="Fermer"><i class='bx  bx-x'    ></i></button>
+					</div>
+					<h3 id="modal-title" class="modal_title">Galerie photo</h3>
+				</header>
+
+				<section class="modal_view" id="modal-view-gallery" aria-hidden="false">
+					<div class="modal_grid" id="modal-grid">
+						<!-- Vignettes travaux -->
+					</div>
+					<hr class="modal_divider">
+					<div class="modal_footer">
+						<button class="btn btn-primary" id="btn-open-add">Ajouter une photo</button>
+					</div>
+				</section>
+
+				<section class="modal_view" id="modal-view-form" aria-hidden="true" hidden>
+					<form id="add-work-form" novalidate>
+						<div class="upload">
+							<div class="upload_zone">
+								<div class="upload_icon" aria-hidden="true"><i class='bx  bx-image'    ></i></div>
+								<input type="file" id="upload-input" accept="image/*" hidden>
+								<button type="button" class="btn btn-upload" id="upload-trigger">+ Ajouter photo</button>
+								<p class="upload_hint">jpg, png : 4mo max</p>
+								<img id="upload-preview" alt="" hidden>
+							</div>
+						</div>
+
+						<label for="title-input" class="form_label">Titre</label>
+						<input type="text" id="title-input" class="form_input">
+
+						<label for="category-input" class="form_label">Catégorie</label>
+						<select id="category-input" class="form_input">
+							<!-- Dynamique -->
+						</select>
+
+						<hr class="modal_divider">
+						<div class="modal_footer">
+							<button type="submit" class="btn btn-primary btn-disabled" disabled>Valider</button>
+						</div>
+					</form>
+				</section>
+			</div>
+		</dialog>
+
+		<nav class="filters" id="filters"></nav>
+		<div class="gallery"></div>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>
