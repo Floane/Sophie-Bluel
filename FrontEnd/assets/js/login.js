@@ -23,16 +23,8 @@ form.addEventListener("submit", async (e) => {
                 response.status === 401 ? "Mot de passe incorrect" :
                 response.status === 404 ? "Utilisateur introuvable" : 
                 "Identifiants incorrects";
-
-            errorMsg.textContent = "";
-            errorMsg.style.display = "none";
+            console.log(msg);
             
-            try {
-                const data = await response.json();
-                if (data && (data.message || data.error)) {
-                    msg = data.message || data.error;
-                }
-            } catch (_) {}
             errorMsg.textContent = msg;
             errorMsg.style.display = "block";
             return;
@@ -42,7 +34,6 @@ form.addEventListener("submit", async (e) => {
         const token = data.token;
 
         localStorage.setItem("authToken", token);
-        localStorage.setItem("isLoggedIn", "true");
         window.location.href = "index.html";
 
     } catch {
