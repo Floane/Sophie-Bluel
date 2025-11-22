@@ -31,7 +31,7 @@
 	</nav>
 </header>
 <main>
-	<section id="introduction">
+	<div id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
 		</figure>
@@ -41,7 +41,7 @@
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
-	</section>
+	</div>
 	<section id="portfolio">
 		<div class="title">
 			<h2>Mes Projets</h2>
@@ -61,7 +61,7 @@
 					<h3 id="modal-title" class="modal_title">Galerie photo</h3>
 				</header>
 
-				<section class="modal_view" id="modal-view-gallery" aria-hidden="false">
+				<div class="modal_view" id="modal-view-gallery" aria-hidden="false">
 					<div class="modal_grid" id="modal-grid">
 						<!-- Vignettes travaux -->
 					</div>
@@ -69,9 +69,9 @@
 					<div class="modal_footer">
 						<button class="btn btn-primary" id="btn-open-add">Ajouter une photo</button>
 					</div>
-				</section>
+				</div>
 
-				<section class="modal_view" id="modal-view-form" aria-hidden="true" hidden>
+				<div class="modal_view" id="modal-view-form" hidden>
 					<form id="add-work-form" novalidate>
 						<div class="upload">
 							<div class="upload_zone">
@@ -79,7 +79,7 @@
 								<input type="file" id="upload-input" accept="image/*" hidden>
 								<button type="button" class="btn btn-upload" id="upload-trigger">+ Ajouter photo</button>
 								<p class="upload_hint">jpg, png : 4mo max</p>
-								<img id="upload-preview" alt="" hidden>
+								<img id="upload-preview" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" hidden>
 							</div>
 						</div>
 
@@ -102,7 +102,7 @@
 							<button type="submit" class="btn btn-primary btn-disabled" disabled>Valider</button>
 						</div>
 					</form>
-				</section>
+				</div>
 			</div>
 		</dialog>
 
