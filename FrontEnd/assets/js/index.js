@@ -210,7 +210,7 @@ async function loadCategoriesOnce() {
         }
         const categories = await res.json();
 
-        categorySel.innerHTML = '<option value="">Choisir une catégorie</option>';
+        categorySel.innerHTML = '<option value=""></option>';
         categories.forEach(cat => {
             const opt = document.createElement("option");
             opt.value = String(cat.id);

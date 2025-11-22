@@ -83,14 +83,20 @@
 							</div>
 						</div>
 
-						<label for="title-input" class="form_label">Titre</label>
-						<input type="text" id="title-input" class="form_input">
+						<div class="group_input">
+							<label for="title-input" class="form_label">Titre</label>
+							<input type="text" id="title-input" class="form_input">
 
-						<label for="category-input" class="form_label">Catégorie</label>
-						<select id="category-input" class="form_input">
-							<!-- Dynamique -->
-						</select>
-
+							<label for="category-input" class="form_label">Catégorie</label>
+							<div class="select-wrapper">
+								<select id="category-input" class="form_input">
+									<!-- Dynamique -->
+								</select>
+								<i class='bxr  bx-chevron-down'></i> 
+							</div>
+							
+						</div>
+					
 						<hr class="modal_divider">
 						<div class="modal_footer">
 							<button type="submit" class="btn btn-primary btn-disabled" disabled>Valider</button>
@@ -113,7 +119,7 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input type="submit" value="Envoyer" disabled>
 		</form>
 	</section>
 </main>

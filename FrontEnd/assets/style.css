@@ -252,6 +252,8 @@ footer nav ul {
 	justify-content: center;
 	align-items: center;
 	display: none;
+	width: 100vw;
+    margin-left: calc(50% - 50vw);
 }
 
 .title {
@@ -273,10 +275,11 @@ footer nav ul {
 
 
 /*** MODAL ***/
-dialog #work-modal {
-	border: 0;
+dialog#works-modal {
+	border: none;
+	border-radius: 10px;
 	padding: 0;
-	width: 100%;
+	width: 40%;
 }
 
 dialog::backdrop {
@@ -296,11 +299,22 @@ dialog::backdrop {
 	margin: 0;
 }
 
+.modal_close {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+.modal_back {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
 #modal-buttons {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 }
 
 #modal-buttons button {
@@ -315,7 +329,7 @@ dialog::backdrop {
 	text-align: center;
 	font-weight: 400;
 	font-size: 26px;
-	margin: 6px 0 8px;
+	margin: 50px 0 10px;
 }
 
 .icon-btn {
@@ -331,16 +345,53 @@ dialog::backdrop {
 	margin: 0;
 }
 
+.modal_grid {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 15px;
+	padding: 30px 60px;
+}
+
+.modal_thumb {
+    position: relative;
+}
+
+.modal_thumb img {
+	display: block;
+	width: 100%;
+	height: 110px;
+	object-fit: cover;
+}
+
 .modal_divider {
 	border: none;
 	border-top: 1px solid #B3B3B3;
 	margin: 24px 64px;
 }
 
+.modal_trash {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: #000000;
+	border: none;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+}
+
+.modal_trash i {
+	color: white;
+	font-size: 11px;
+}
+
 .modal_footer {
 	display: flex;
 	justify-content: center;
 	padding-top: 6px;
+	margin-bottom: 30px;
 }
 
 .btn {
@@ -358,7 +409,7 @@ dialog::backdrop {
 }
 
 .btn-disabled {
-	opacity: 0.5; 
+	background-color: #A7A7A7;
 	cursor: not-allowed;
 }
 
@@ -366,21 +417,30 @@ dialog::backdrop {
 	background-color: #E8F1F6;
 	border-radius: 3px;
 	height: 170px;
-	display: grid; 
-	place-items: center;
-	gap: 8px;
+	display: flex;
+	flex-direction: column; 
+	gap: 5px;
+	align-items: center;
+	justify-content: center;
 	margin: 18px 64px 8px;
+	padding: 10px 60px;
 	position: relative;
 }
 
 .upload_icon { 
-	opacity: 0.6; 
-	margin-bottom: 6px; 
+	margin: 0;
+}
+
+.bx-image {
+	font-size: 76px;
+	color: #B9C5CC;
 }
 
 .btn-upload {
 	background-color: #CBD6DC;
 	color: #306685;
+	font-weight: 500;
+	font-size: 14px;
 	border-radius: 25px;
 	padding: 10px 16px;
 }
@@ -392,30 +452,65 @@ dialog::backdrop {
 }
 
 .upload_zone img {
-	position: absolute; 
-	inset: 8px 8px auto 8px;
-	max-height: 154px; 
-	width: calc(100% - 16px); 
-	object-fit: contain; 
-	background-color:#fff; 
-	border-radius: 3px;
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    background-color: #E8F1F6;
 }
 
 .form_label { 
 	display: block; 
 	margin: 18px 0 10px; 
-	font-weight: 700; 
+	font-weight: 500;
+	color: #3D3D3D;
+	font-size: 14px;
 }
 
-.form__input {
-	width: 100%; 
-	height: 50px; 
-	padding: 10px 12px;
+.form_input {
+	width: 100%;
+	padding: 10px;
 	border: none; 
 	background-color:#fff; 
+	color: #444;
 	box-shadow: 0 4px 14px rgba(0,0,0,.09);
-	border-radius: 8px; 
 	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    padding-right: 40px;
+}
+
+.bx-chevron-down {
+    position: absolute;
+    right: 15px;
+	top: 12px;
+    font-size: 14px;
+    pointer-events: none;
+    color: #444;
+}
+
+.group_input {
+	padding: 0;
+	margin: 0 64px;
+}
+
+#title-input {
+	width: 95%;
 }
 
 [hidden] {
